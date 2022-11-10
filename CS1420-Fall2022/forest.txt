@@ -1,0 +1,8 @@
+Pine     27
+Willow   10
+Oak      40
+Cherry   32
+Elm      5
+Aspen 12
+Spruce 13
+Redwood 14
