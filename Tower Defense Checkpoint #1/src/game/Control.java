@@ -1,3 +1,10 @@
+/**
+ * Control class handles crude game-play
+ * holds the timer to update the game
+ *
+ * @author  Logan Luker & Bruce Crockett
+ * @version 11/15/2022
+ */
 package game;
 
 import java.awt.event.ActionEvent;
@@ -19,16 +26,22 @@ public class Control implements Runnable,
 	View view;
 	
 	private Path path;
-	
+	/**
+	 * default constructor,
+	 * run the run() method
+	 */
 	public Control ()
 	{
 		SwingUtilities.invokeLater(this);
 	}
 
+	/**
+	 * set up the game view
+	 * and start update timer
+	 */
 	@Override
 	public void run() 
 	{
-		
 		ClassLoader myLoader = this.getClass().getClassLoader();
 		InputStream pathStream = myLoader.getResourceAsStream("resources/path_2.txt");
 		Scanner pathScanner = new Scanner(pathStream);
@@ -47,12 +60,21 @@ public class Control implements Runnable,
         Timer t = new Timer(16, this);  // Triggers every 16 milliseconds, reports actions to 'this' object.
         t.start();
 	}
-	
+	/**
+	 * get current path
+	 * @return current path
+	 */
 	public Path getPath ()
 	{
 		return path;
 	}
-	
+	/**
+	 * Get an image from the resources folder
+	 * 
+	 * @param filename
+	 * 				   name of image file to get
+	 * @return the image
+	 */
     public BufferedImage getImage (String filename)
     {
         try
@@ -69,13 +91,16 @@ public class Control implements Runnable,
             return null;  // Does not happen, the application has exited.
         }
     }
-
+    /**
+     * Update game to the next frame
+     * when the timer
+     */
 	@Override
 	public void actionPerformed (ActionEvent e) 
 	{
 		state.startFrame();
         for (GameObject go : state.getFrameObjects())
-            go.update(0);    
+            go.update(0);
         state.finishFrame();
         view.repaint();
 	}

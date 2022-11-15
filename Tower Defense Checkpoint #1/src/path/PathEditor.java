@@ -1,3 +1,10 @@
+/**
+ * Path editor allows user to create a path
+ * click and drag to create lines to define the path
+ *
+ * @author  Logan Luker & Bruce Crockett
+ * @version 11/15/2022
+ */
 package path;
 
 import java.awt.*;
@@ -128,7 +135,7 @@ public class PathEditor extends JPanel implements Runnable,
         //try loading the background image
         try 
         {
-            backdrop = javax.imageio.ImageIO.read(new File("path_2.jpg"));
+            backdrop = javax.imageio.ImageIO.read(new File("src/resources/path_2.jpg"));
         } 
         catch (IOException e) 
         {
