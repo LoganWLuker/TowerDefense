@@ -1,3 +1,10 @@
+/**
+ * View class creates the panel
+ * and paints everything
+ *
+ * @author  Logan Luker & Bruce Crockett
+ * @version 11/15/2022
+ */
 package game;
 
 import java.awt.Dimension;
@@ -14,9 +21,17 @@ public class View extends JPanel
 	// Gets rid of Eclipse error message
 	private static final long serialVersionUID = 1L;
 	
+	//fields
 	Control control;
 	State state;
-	
+	/**
+	 * Makes a frame for the game to view in
+	 * 
+	 * @param control
+	 * 				  view control
+	 * @param state
+	 * 				 state control
+	 */
 	public View (Control control, State state)
 	{
 		this.control = control;
@@ -43,7 +58,12 @@ public class View extends JPanel
 		
 		
 	}
-	
+	/**
+	 * Paints everything that's visible
+	 * and not expired
+	 * @param g
+	 * 			object to paint
+	 */
 	@Override
 	public void paint (Graphics g)
 	{
