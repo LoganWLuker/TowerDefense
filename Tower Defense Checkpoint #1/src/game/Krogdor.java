@@ -34,9 +34,10 @@ public class Krogdor extends GameObject
      */
 	public void update (double elapsedTime)
 	{
-		if(percentage > 1)
-			percentage = 0;
-		percentage += 0.01;
+		//uncomment to loop to beginning of path
+//		if(percentage > 1)
+//			percentage = 0;
+		percentage += 0.004;
 		
 		spriteNum+=0.4;
 		if(spriteNum >= 4)
