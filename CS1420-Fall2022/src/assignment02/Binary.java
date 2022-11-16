@@ -12,7 +12,6 @@ public class Binary {
 
 	public static void main(String[] args) 
 	{
-		System.out.println(((1!=0)? 1:0)*4);
 		int n;
 		String nbin = "";
 		Scanner in = new Scanner(System.in);
