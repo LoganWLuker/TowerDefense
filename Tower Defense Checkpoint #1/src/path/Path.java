@@ -118,7 +118,7 @@ public class Path
 			 return new Point(points.get(0).x,points.get(0).y);
 		 //return the ending point if the percent given is greater than 100
 		 if(percentTraveled > 1)
-			 return new Point(points.get(points.size()-1).x,points.get(points.size()-1).y);
+			 return new Point(points.get(points.size()-1).x,points.get(points.size()-1).y); 
 		 //create an array to hold the segment lengths
 		 double[] lengths = new double[points.size()-1];
 		 double length = 0;
