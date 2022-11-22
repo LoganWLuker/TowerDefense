@@ -80,13 +80,9 @@ public class Control implements Runnable,
 		
 		state.startFrame();  // Prepares the creation of the 'next' frame
         state.addGameObject(new Background(this));  // Add one background object to our list
-<<<<<<< HEAD
-        state.addGameObject(new Krogdor(this));  // Add one snail to our list
         state.addGameObject(new Menu(this, state));
-=======
         state.addGameObject(new Krogdor(this.state,this));  // Add one snail to our list
         state.addGameObject(new Snail(this.state,this));  // Add one snail to our list
->>>>>>> refs/heads/remove-expired-objects
         state.finishFrame();    // Mark the next frame as ready
 
         view.repaint();         // Draw it.
