@@ -1,7 +1,6 @@
 /**
  * Entry point for the game
  *
- *testing that this pushes
  * @author  Logan Luker & Bruce Crockett
  * @version 11/15/2022
  */
