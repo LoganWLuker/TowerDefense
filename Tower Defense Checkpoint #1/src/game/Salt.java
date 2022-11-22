@@ -11,6 +11,9 @@ public class Salt extends GameObject implements Clickable
 	
 	public Salt(State state, Control control)
 	{
+		this.isVisible = true;
+		this.isExpired = false;
+		this.isMoving = true;
 		this.state = state;
 		this.control = control;
 	}
@@ -22,12 +25,13 @@ public class Salt extends GameObject implements Clickable
 			xPos = control.getMouseX();
 			yPos = control.getMouseY();
 		}
+		
 	}
 
 	@Override
 	public void draw(Graphics g) 
 	{
-		g.drawImage(control.getImage("salt.png"), xPos, yPos, null);
+		g.drawImage(control.getImage("salt.png"), xPos-26, yPos-30, null);
 	}
 	@Override
 	public boolean consumeClick(int mouseX, int mouseY) 
@@ -35,6 +39,10 @@ public class Salt extends GameObject implements Clickable
 		if(isMoving)
 		{
 			isMoving = false;
+			if(mouseX < 0 || mouseX > 600 || mouseY < 0 || mouseY > 600)
+			{
+				this.isExpired = true;
+			}
 			return true;
 		}
 		return false;

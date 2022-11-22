@@ -85,7 +85,6 @@ public class Control implements Runnable,
         state.addGameObject(new MenuButton(this, state));
         state.addGameObject(new Krogdor(this.state,this));  // Add one snail to our list
         state.addGameObject(new Snail(this.state,this));  // Add one snail to our list
-        
         state.finishFrame();    // Mark the next frame as ready
 
         view.repaint();         // Draw it.
