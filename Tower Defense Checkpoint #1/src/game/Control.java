@@ -19,7 +19,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -31,6 +33,8 @@ public class Control implements Runnable,
 								MouseListener,
 								MouseMotionListener
 {
+	private Map<String, BufferedImage> imageCache;
+	
 	State state;
 	View view;
 	
@@ -53,6 +57,11 @@ public class Control implements Runnable,
 	@Override
 	public void run() 
 	{
+		// Build the map.
+		
+		imageCache = new TreeMap<String,BufferedImage>();
+		
+		// Create major game parts
 		ClassLoader myLoader = this.getClass().getClassLoader();
 		InputStream pathStream = myLoader.getResourceAsStream("resources/path_2.txt");
 		Scanner pathScanner = new Scanner(pathStream);
@@ -95,11 +104,22 @@ public class Control implements Runnable,
 	 */
     public BufferedImage getImage (String filename)
     {
+    	//if image is in the map, return it
+    	if(imageCache.containsKey(filename))
+    	{
+    		return imageCache.get(filename);
+    	}
+    	//If we get this far, image is not in map. Load it
         try
         {
             ClassLoader myLoader = this.getClass().getClassLoader();
             InputStream imageStream = myLoader.getResourceAsStream("resources/" + filename);
             BufferedImage image = javax.imageio.ImageIO.read(imageStream);
+            //put the image in the map
+            imageCache.put(filename, image);
+            //Demonstrate that they only load once
+            System.out.println("Loading " + filename);
+            //return the loaded image
             return image;
         }
         catch (IOException e)
