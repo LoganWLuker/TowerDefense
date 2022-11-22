@@ -1,3 +1,10 @@
+/**
+ * Salt Class describes the salt Tower
+ * able to be placed
+ *
+ * @author  Logan Luker & Bruce Crockett
+ * @version 11/15/2022
+ */
 package game;
 
 import java.awt.Graphics;
