@@ -32,7 +32,16 @@ public class Snail extends GameObject
      */
 	public void update (double elapsedTime) 
 	{
-		percentage += 0.001;
+		if (percentage <= 100)
+		{
+			percentage += 0.001;
+		} else 
+		{
+			this.isExpired = true;
+			
+			int currentLives = control.state.getLives();
+			control.state.setLives(currentLives - 1);
+		}
 	}
 	/**
 	 * Draw the snail image based on its percentage
