@@ -15,7 +15,11 @@ public class Salt extends GameObject implements Clickable
 	int xPos, yPos;
 	State state;
 	Control control;
-	
+	/**
+	 * Default constructor
+	 * @param state
+	 * @param control
+	 */
 	public Salt(State state, Control control)
 	{
 		this.isVisible = true;
@@ -24,6 +28,10 @@ public class Salt extends GameObject implements Clickable
 		this.state = state;
 		this.control = control;
 	}
+	/**
+	 * update position to mouse
+	 * if tower is being placed
+	 */
 	@Override
 	public void update(double elapsedTime) 
 	{
@@ -34,12 +42,19 @@ public class Salt extends GameObject implements Clickable
 		}
 		
 	}
-
+	/**
+	 * Describe how to draw Salt tower
+	 */
 	@Override
 	public void draw(Graphics g) 
 	{
 		g.drawImage(control.getImage("salt.png"), xPos-26, yPos-30, null);
 	}
+	/**
+	 * Describe how clicking is handled with Salt tower
+	 * @param mouseX
+	 * @param mouseY
+	 */
 	@Override
 	public boolean consumeClick(int mouseX, int mouseY) 
 	{

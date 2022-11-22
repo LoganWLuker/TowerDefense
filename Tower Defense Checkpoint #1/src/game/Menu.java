@@ -15,7 +15,12 @@ public class Menu extends GameObject
 	Control control;
 	State state;
 	int lives, cash;
-	
+	/**
+	 * Default constructor
+	 * 
+	 * @param control
+	 * @param state
+	 */
 	public Menu (Control control, State state)
 	{
 		this.state = state;
@@ -24,14 +29,19 @@ public class Menu extends GameObject
 		isVisible = true;
 		isExpired = false;
 	}
-	
+	/**
+	 * Menu does not change
+	 * nothing to update
+	 */
 	@Override
 	public void update(double elapsedTime) 
 	{
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * Describes how to draw the Menu
+	 */
 	@Override
 	public void draw(Graphics g) 
 	{
