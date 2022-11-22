@@ -7,8 +7,15 @@
  */
 package game;
 
+
+// This is an arbitrary change designed to test the Remote Push capabilities of Eclipse
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,10 +27,14 @@ import javax.swing.Timer;
 import path.Path;
 
 public class Control implements Runnable,
-								ActionListener
+								ActionListener,
+								MouseListener,
+								MouseMotionListener
 {
 	State state;
 	View view;
+	
+	int mouseX, mouseY;
 	
 	private Path path;
 	/**
@@ -47,7 +58,11 @@ public class Control implements Runnable,
 		Scanner pathScanner = new Scanner(pathStream);
 		
 		path = new Path(pathScanner);
+		
 		state = new State ();
+		state.setCash(5000);
+		state.setLives(100);
+		
 		view = new View (this, state);
 		
 		state.startFrame();  // Prepares the creation of the 'next' frame
@@ -91,6 +106,11 @@ public class Control implements Runnable,
             return null;  // Does not happen, the application has exited.
         }
     }
+    
+    public int getMouseX () { return this.mouseX; }
+    
+    public int getMouseY () { return this.mouseY; }
+    
     /**
      * Update game to the next frame
      * when the timer
@@ -103,5 +123,48 @@ public class Control implements Runnable,
             go.update(0);
         state.finishFrame();
         view.repaint();
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) 
+	{
+		this.mouseX = e.getX();
+		this.mouseY = e.getY();
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

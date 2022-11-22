@@ -14,6 +14,9 @@ public class State
 {
 	List<GameObject> currentFrameGameObjects;
 	List<GameObject> nextFrameGameObjects;
+	
+	int lives, cash;
+	
 	/**
 	 * default constructor
 	 */
@@ -54,4 +57,10 @@ public class State
     {
         nextFrameGameObjects.add(go);
     }
+	
+	public void setLives (int target) { this.lives = target; }
+	public int getLives () { return this.lives; }
+	
+	public void setCash (int target) { this.cash = target; }
+	public int getCash () { return this.cash; }
 }
