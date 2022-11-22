@@ -44,5 +44,4 @@ public class Menu extends GameObject
 		g.setFont(new Font("TimesRoman", 0, 20));
 		g.drawString("Towers", 665, 30);
 	}
-
 }
