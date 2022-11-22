@@ -37,6 +37,7 @@ public class Control implements Runnable,
 	
 	State state;
 	View view;
+	Menu menu;
 	
 	int mouseX, mouseY;
 	
@@ -73,17 +74,19 @@ public class Control implements Runnable,
 		state.setLives(100);
 		
 		view = new View (this, state);
-
+		
 		view.addMouseListener(this);
 		view.addMouseMotionListener(this);
 		
 		state.startFrame();  // Prepares the creation of the 'next' frame
         state.addGameObject(new Background(this));  // Add one background object to our list
         state.addGameObject(new Krogdor(this));  // Add one snail to our list
+        state.addGameObject(new Menu(this, state));
         state.finishFrame();    // Mark the next frame as ready
 
-        view.repaint();           // Draw it.
+        view.repaint();         // Draw it.
 		
+        
         Timer t = new Timer(16, this);  // Triggers every 16 milliseconds, reports actions to 'this' object.
         t.start();
 	}

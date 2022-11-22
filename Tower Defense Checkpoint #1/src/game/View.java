@@ -41,7 +41,7 @@ public class View extends JPanel
 
 		// Set size of panel
 		
-        this.setMinimumSize(new Dimension(600,600));
+        this.setMinimumSize(new Dimension(800,600));
         this.setPreferredSize(this.getMinimumSize());
         
 		// Set scope of panel
