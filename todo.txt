@@ -2,8 +2,8 @@
 
 ##Minor Steps:
 * Loading Images
-* Expired Objects
-* Lives, Cash, and other Fields [Incomplete]
+* Remove Expired Objects
+* Lives, Cash, and other Fields [Done]
 * Path Expiration for all enemies [Done]
 
 ##Major Steps:
