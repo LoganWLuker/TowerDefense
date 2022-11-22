@@ -1,0 +1,12 @@
+#Checkpoint 2:
+
+##Minor Steps:
+* Loading Images
+* Expired Objects
+* Lives, Cash, and other Fields [Incomplete]
+* Path Expiration for all enemies [Done]
+
+##Major Steps:
+* Listen to mouse clicks [Incomplete]
+* Menu/Score area
+* Placement of towers
