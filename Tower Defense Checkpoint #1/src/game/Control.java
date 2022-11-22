@@ -140,8 +140,7 @@ public class Control implements Runnable,
 		this.mouseX = e.getX();
 		this.mouseY = e.getY();
 		
-		//System.out.println("X: " + mouseX + " | Y: " + mouseY);
-		
+		//System.out.println("X: " + mouseX + " | Y: " + mouseY);	
 	}
 
 	@Override
