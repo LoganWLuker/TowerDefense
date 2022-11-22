@@ -39,7 +39,7 @@ public class Control implements Runnable,
 	View view;
 	Menu menu;
 	
-	int mouseX, mouseY;
+	private int mouseX, mouseY;
 	
 	private Path path;
 	/**
@@ -101,6 +101,10 @@ public class Control implements Runnable,
 	{
 		return path;
 	}
+	
+	public int getMouseX () { return this.mouseX; }
+	
+	public int getMouseY () { return this.mouseY; }
 	/**
 	 * Get an image from the resources folder
 	 * 
@@ -136,9 +140,6 @@ public class Control implements Runnable,
         }
     }
     
-    public int getMouseX () { return this.mouseX; }
-    
-    public int getMouseY () { return this.mouseY; }
     
     /**
      * Update game to the next frame
@@ -182,8 +183,8 @@ public class Control implements Runnable,
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+	public void mouseReleased(MouseEvent e) 
+	{
 		
 	}
 

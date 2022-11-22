@@ -58,5 +58,4 @@ public class Menu extends GameObject
 		this.cash = state.getCash();
 		g.drawString("Cash: " + this.cash, 525, 34);		
 	}
-
 }

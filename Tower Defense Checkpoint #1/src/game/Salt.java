@@ -1,25 +1,16 @@
 package game;
 
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
-public class Salt extends GameObject implements MouseMotionListener
+public class Salt extends GameObject implements Clickable
 {
 	boolean isMoving;
 	int xPos, yPos;
-	int mouseX,mouseY;
 	State state;
 	Control control;
 	
 	public Salt(State state, Control control)
 	{
-//		this.mouseX = 0;
-//		this.mouseY = 0;
-		this.isMoving = false;
-		this.xPos = 300;
-		this.yPos = 300;
 		this.state = state;
 		this.control = control;
 	}
@@ -28,8 +19,8 @@ public class Salt extends GameObject implements MouseMotionListener
 	{
 		if(isMoving)
 		{
-			xPos = mouseX;
-			yPos = mouseY;
+			xPos = control.getMouseX();
+			yPos = control.getMouseY();
 		}
 	}
 
@@ -39,12 +30,14 @@ public class Salt extends GameObject implements MouseMotionListener
 		g.drawImage(control.getImage("salt.png"), xPos, yPos, null);
 	}
 	@Override
-	public void mouseMoved(MouseEvent e) 
+	public boolean consumeClick(int mouseX, int mouseY) 
 	{
-		mouseX = e.getX();
-		mouseY = e.getY();
+		if(isMoving)
+		{
+			isMoving = false;
+			return true;
+		}
+		return false;
 	}
-	@Override
-	public void mouseDragged(MouseEvent e) {}
 
 }
