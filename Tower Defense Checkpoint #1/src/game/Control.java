@@ -64,6 +64,9 @@ public class Control implements Runnable,
 		state.setLives(100);
 		
 		view = new View (this, state);
+
+		view.addMouseListener(this);
+		view.addMouseMotionListener(this);
 		
 		state.startFrame();  // Prepares the creation of the 'next' frame
         state.addGameObject(new Background(this));  // Add one background object to our list
@@ -128,14 +131,16 @@ public class Control implements Runnable,
 	@Override
 	public void mouseDragged(MouseEvent e) 
 	{
-		this.mouseX = e.getX();
-		this.mouseY = e.getY();
+
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent e) {
+	public void mouseMoved(MouseEvent e) 
+	{
+		this.mouseX = e.getX();
+		this.mouseY = e.getY();
 		
-		
+		//System.out.println("X: " + mouseX + " | Y: " + mouseY);	
 	}
 
 	@Override

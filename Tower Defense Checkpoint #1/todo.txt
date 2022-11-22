@@ -7,6 +7,6 @@
 * Path Expiration for all enemies [Done]
 
 ##Major Steps:
-* Listen to mouse clicks [Incomplete]
+* Listen to mouse clicks [Done]
 * Menu/Score area
 * Placement of towers
