@@ -34,14 +34,20 @@ public class Krogdor extends GameObject
      */
 	public void update (double elapsedTime)
 	{
-		//uncomment to loop to beginning of path
-//		if(percentage > 1)
-//			percentage = 0;
-		percentage += 0.004;
-		
-		spriteNum+=0.4;
-		if(spriteNum >= 4)
-			spriteNum = 0;
+		if (percentage <= 100)
+		{
+			percentage += 0.004;
+		} else 
+		{
+			this.isExpired = true;
+			
+			int currentLives = control.state.getLives();
+			control.state.setLives(currentLives - 1);
+		}
+			
+			spriteNum+=0.4;
+			if(spriteNum >= 4)
+				spriteNum = 0;
 	}
 	/**
 	 * Draw the Krogdor image based on its percentage
