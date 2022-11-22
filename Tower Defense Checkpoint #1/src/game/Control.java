@@ -19,6 +19,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -84,7 +85,6 @@ public class Control implements Runnable,
         state.addGameObject(new MenuButton(this, state));
         state.addGameObject(new Krogdor(this.state,this));  // Add one snail to our list
         state.addGameObject(new Snail(this.state,this));  // Add one snail to our list
-        
         state.finishFrame();    // Mark the next frame as ready
 
         view.repaint();         // Draw it.
@@ -185,7 +185,15 @@ public class Control implements Runnable,
 	@Override
 	public void mouseReleased(MouseEvent e) 
 	{
+		List<GameObject> list = state.getFrameObjects();
 		
+		for(GameObject go : list)
+			if (go instanceof Clickable)
+			{
+				Clickable c = (Clickable) go;
+				if (c.consumeClick(mouseX, mouseY))
+					break;
+			}
 	}
 
 	@Override

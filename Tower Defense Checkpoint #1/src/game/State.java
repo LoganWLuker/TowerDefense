@@ -64,7 +64,6 @@ public class State
     {
         nextFrameGameObjects.add(go);
     }
-	
 	public void setLives (int target) { this.lives = target; }
 	public int getLives () { return this.lives; }
 	
