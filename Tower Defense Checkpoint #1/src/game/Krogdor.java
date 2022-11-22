@@ -15,18 +15,20 @@ public class Krogdor extends GameObject
 	private double percentage;
 	private double spriteNum;
 	Control control;
+	State state;
 	/**
 	 * Control constructor
 	 * @param control
 	 * 				  Krogdor control
 	 */
-    public Krogdor (Control control) 
+    public Krogdor (State state, Control control) 
     {
     	percentage = 0;
     	spriteNum = 0;
         isVisible = true;
         isExpired = false;
         
+        this.state = state;
         this.control = control;
     }
     /**
@@ -34,20 +36,20 @@ public class Krogdor extends GameObject
      */
 	public void update (double elapsedTime)
 	{
-		if (percentage <= 100)
+		if (percentage < 1)
 		{
 			percentage += 0.004;
-		} else 
+			spriteNum+=0.4;
+			if(spriteNum >= 4)
+				spriteNum = 0;
+		} else
 		{
 			this.isExpired = true;
 			
 			int currentLives = control.state.getLives();
 			control.state.setLives(currentLives - 1);
+			state.addGameObject(new Krogdor(this.state,this.control));
 		}
-			
-			spriteNum+=0.4;
-			if(spriteNum >= 4)
-				spriteNum = 0;
 	}
 	/**
 	 * Draw the Krogdor image based on its percentage

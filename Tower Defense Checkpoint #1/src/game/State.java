@@ -45,6 +45,13 @@ public class State
 	 */
 	public void finishFrame ()
     {
+		for(GameObject gameObject : currentFrameGameObjects)
+		{
+			if(gameObject.isExpired())
+			{
+				nextFrameGameObjects.remove(gameObject);
+			}
+		}
         currentFrameGameObjects = nextFrameGameObjects;
         nextFrameGameObjects = null;  // I added this -- it makes it clear there is only a current list now.
     }

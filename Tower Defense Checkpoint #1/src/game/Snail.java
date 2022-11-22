@@ -14,17 +14,19 @@ public class Snail extends GameObject
 {
 	private double percentage;
 	Control control;
+	State state;
 	/**
 	 * Control constructor
 	 * @param control
 	 * 				  snail control
 	 */
-    public Snail (Control control) 
+    public Snail (State state, Control control) 
     {
     	percentage = 0;
         isVisible = true;
         isExpired = false;
         
+        this.state = state;
         this.control = control;
     }
     /**
@@ -32,7 +34,7 @@ public class Snail extends GameObject
      */
 	public void update (double elapsedTime) 
 	{
-		if (percentage <= 100)
+		if (percentage <= 1)
 		{
 			percentage += 0.001;
 		} else 
@@ -41,6 +43,7 @@ public class Snail extends GameObject
 			
 			int currentLives = control.state.getLives();
 			control.state.setLives(currentLives - 1);
+			state.addGameObject(new Snail(this.state,this.control));
 		}
 	}
 	/**
