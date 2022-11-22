@@ -118,6 +118,7 @@ public class Control implements Runnable,
             //put the image in the map
             imageCache.put(filename, image);
             //Demonstrate that they only load once
+            System.out.println("Git Test");
             System.out.println("Loading " + filename);
             //return the loaded image
             return image;
