@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class MenuButton extends GameObject
@@ -26,7 +27,10 @@ public class MenuButton extends GameObject
 	@Override
 	public void draw(Graphics g) 
 	{
-		// TODO Auto-generated method stub
+		g.setColor(Color.GRAY);
+		g.fillRoundRect(630, 80, 140, 140, 0, 0);
+		g.drawImage(control.getImage("salt.png"), 674, 120, null);
+
 		
 	}
 
