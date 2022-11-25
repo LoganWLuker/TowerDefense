@@ -46,6 +46,7 @@ public class Krogdor extends GameObject
 		{
 			this.isExpired = true;
 			
+			// Remove one life for every enemy that reaches the end
 			int currentLives = control.state.getLives();
 			control.state.setLives(currentLives - 1);
 			state.addGameObject(new Krogdor(this.state,this.control));

@@ -35,25 +35,25 @@ public class Menu extends GameObject
 	@Override
 	public void draw(Graphics g) 
 	{
-		//Draw background
+		// Draw background
 		//System.out.println("Menu.draw() executed.");
 		g.setColor(new Color(100, 170, 56));
 		g.fillRect(600, 0, 200, 600);
 		
-		//Draw title
+		// Draw title
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("Proxima Nova", 0, 20));
 		g.drawString("Towers", 665, 30);
 		
 		// TODO: draw bounding boxes around lives and cash
 		
-		//Draw lives
+		// Draw lives
 		g.setColor(Color.RED);
 		g.setFont(new Font("Proxima Nova", 0, 13));
 		this.lives = state.getLives();
 		g.drawString("Lives: " + this.lives, 525, 17);
 		
-		//Draw cash
+		// Draw cash
 		g.setColor(Color.BLUE);
 		this.cash = state.getCash();
 		g.drawString("Cash: " + this.cash, 525, 34);		
