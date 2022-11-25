@@ -19,6 +19,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -39,7 +40,7 @@ public class Control implements Runnable,
 	View view;
 	Menu menu;
 	
-	int mouseX, mouseY;
+	private int mouseX, mouseY;
 	
 	private Path path;
 	/**
@@ -66,13 +67,12 @@ public class Control implements Runnable,
 		ClassLoader myLoader = this.getClass().getClassLoader();
 		InputStream pathStream = myLoader.getResourceAsStream("resources/path_2.txt");
 		Scanner pathScanner = new Scanner(pathStream);
-		
 		path = new Path(pathScanner);
-		
+		//set state
 		state = new State ();
 		state.setCash(5000);
 		state.setLives(100);
-		
+		//load the view
 		view = new View (this, state);
 		
 		view.addMouseListener(this);
@@ -80,11 +80,10 @@ public class Control implements Runnable,
 		
 		state.startFrame();  // Prepares the creation of the 'next' frame
         state.addGameObject(new Background(this));  // Add one background object to our list
-        state.addGameObject(new Menu(this, state));
-        state.addGameObject(new MenuButton(this, state));
+        state.addGameObject(new Menu(this, state));	//Add menu object to list
+        state.addGameObject(new MenuButton(this, state)); // Add Salt Button to list
         state.addGameObject(new Krogdor(this.state,this));  // Add one snail to our list
         state.addGameObject(new Snail(this.state,this));  // Add one snail to our list
-        
         state.finishFrame();    // Mark the next frame as ready
 
         view.repaint();         // Draw it.
@@ -101,6 +100,10 @@ public class Control implements Runnable,
 	{
 		return path;
 	}
+	
+	public int getMouseX () { return this.mouseX; }
+	
+	public int getMouseY () { return this.mouseY; }
 	/**
 	 * Get an image from the resources folder
 	 * 
@@ -136,9 +139,6 @@ public class Control implements Runnable,
         }
     }
     
-    public int getMouseX () { return this.mouseX; }
-    
-    public int getMouseY () { return this.mouseY; }
     
     /**
      * Update game to the next frame
@@ -180,11 +180,21 @@ public class Control implements Runnable,
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * Consume a click wherever the mouse is clicked
+	 */
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+	public void mouseReleased(MouseEvent e) 
+	{
+		List<GameObject> list = state.getFrameObjects();
 		
+		for(GameObject go : list)
+			if (go instanceof Clickable)
+			{
+				Clickable c = (Clickable) go;
+				if (c.consumeClick(mouseX, mouseY))
+					break;
+			}
 	}
 
 	@Override
