@@ -12,10 +12,16 @@ import java.util.List;
 
 public class State 
 {
-	List<GameObject> currentFrameGameObjects;
-	List<GameObject> nextFrameGameObjects;
+	private List<GameObject> currentFrameGameObjects;
+	private List<GameObject> nextFrameGameObjects;
 	
+	boolean gameOver = false;
 	int lives, cash;
+	int currentRound;
+	double elapsedTime;
+	double totalTime;
+	private double lastTime;
+	private double currentTime;
 	
 	/**
 	 * default constructor
@@ -23,6 +29,7 @@ public class State
 	public State ()
 	{
 		currentFrameGameObjects = new ArrayList<GameObject> ();
+        lastTime = System.currentTimeMillis();
 	}
 	/**
 	 * get current frame objects
@@ -39,6 +46,11 @@ public class State
     {
         nextFrameGameObjects = new ArrayList<GameObject>();    // Creates empty list
         nextFrameGameObjects.addAll(currentFrameGameObjects);  // Add all the current ones to the new list.  This is more clear
+        // Set up time calculations
+        currentTime = System.currentTimeMillis();
+        elapsedTime = (currentTime - lastTime)/1000.0;
+        lastTime = currentTime;
+        totalTime += elapsedTime;
     }
 	/**
 	 * Progress forward a frame
@@ -64,9 +76,44 @@ public class State
     {
         nextFrameGameObjects.add(go);
     }
-	public void setLives (int target) { this.lives = target; }
-	public int getLives () { return this.lives; }
+	public void setLives (int target)
+	{
+		// check if the result means game over
+		if(target <= 0)
+		{
+			// trigger the boolean and set lives to 0
+			gameOver = true;
+			target = 0;
+		}
+		this.lives = target;
+	}
+	public int getLives () 
+	{
+		return this.lives;
+	}
 	
-	public void setCash (int target) { this.cash = target; }
-	public int getCash () { return this.cash; }
+	public void setCash (int target)
+	{
+		this.cash = target; 
+	}
+	public int getCash ()
+	{
+		return this.cash; 
+	}
+	public double getElapsedTime()
+	{
+		return this.elapsedTime;
+	}
+	public double getTotalTime()
+	{
+		return this.totalTime;
+	}
+	public int getRound()
+	{
+		return this.currentRound;
+	}
+	public void setRound(int target)
+	{
+		this.currentRound = target;
+	}
 }

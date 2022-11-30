@@ -22,6 +22,8 @@ public class Salt extends GameObject implements Clickable
 	 */
 	public Salt(State state, Control control)
 	{
+		xPos = control.getMouseX();
+		yPos = control.getMouseY();
 		this.isVisible = true;
 		this.isExpired = false;
 		this.isMoving = true;

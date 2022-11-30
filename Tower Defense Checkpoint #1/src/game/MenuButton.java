@@ -59,9 +59,9 @@ public class MenuButton extends GameObject implements Clickable
 		if(mouseX > 630 && mouseX < 770
 		   && mouseY > 80 && mouseY < 220)
 		{
-			control.state.startFrame();
-			control.state.addGameObject(new Salt(this.state,this.control));
-			control.state.finishFrame();
+			state.startFrame();
+			state.addGameObject(new Salt(this.state,this.control));
+			state.finishFrame();
 			control.view.repaint();
 			return true;
 		}
