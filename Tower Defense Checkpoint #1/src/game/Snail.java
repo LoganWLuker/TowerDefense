@@ -13,6 +13,7 @@ import java.awt.Point;
 public class Snail extends GameObject
 {
 	private double percentage;
+	private int damage;
 	Control control;
 	State state;
 	/**
@@ -22,6 +23,7 @@ public class Snail extends GameObject
 	 */
     public Snail (State state, Control control) 
     {
+    	damage = 10;
     	percentage = 0;
         isVisible = true;
         isExpired = false;
@@ -36,14 +38,14 @@ public class Snail extends GameObject
 	{
 		if (percentage <= 1)
 		{
-			percentage += 0.001;
+			percentage += 0.05 * state.getElapsedTime();
 		} else 
 		{
 			this.isExpired = true;
 			
 			int currentLives = control.state.getLives();
-			control.state.setLives(currentLives - 1);
-			state.addGameObject(new Snail(this.state,this.control));
+			control.state.setLives(currentLives - damage);
+			//state.addGameObject(new Snail(this.state,this.control));
 		}
 	}
 	/**

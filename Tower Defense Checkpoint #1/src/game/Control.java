@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -39,6 +40,7 @@ public class Control implements Runnable,
 	State state;
 	View view;
 	Menu menu;
+	RoundControl roundControl;
 	
 	private int mouseX, mouseY;
 	
@@ -68,10 +70,12 @@ public class Control implements Runnable,
 		InputStream pathStream = myLoader.getResourceAsStream("resources/path_2.txt");
 		Scanner pathScanner = new Scanner(pathStream);
 		path = new Path(pathScanner);
+		pathScanner.close();
 		//set state
 		state = new State ();
 		state.setCash(5000);
 		state.setLives(100);
+		state.setRound(1);
 		//load the view
 		view = new View (this, state);
 		
@@ -82,12 +86,15 @@ public class Control implements Runnable,
         state.addGameObject(new Background(this));  // Add one background object to our list
         state.addGameObject(new Menu(this, state));	//Add menu object to list
         state.addGameObject(new MenuButton(this, state)); // Add Salt Button to list
-        state.addGameObject(new Krogdor(this.state,this));  // Add one snail to our list
-        state.addGameObject(new Snail(this.state,this));  // Add one snail to our list
+        //state.addGameObject(new Krogdor(this.state,this));  // Add one snail to our list
+        //state.addGameObject(new Snail(this.state,this));  // Add one snail to our list
+        
+        roundControl = new RoundControl(this.state, this);
+        roundControl.startRound(state.getRound());
+        
         state.finishFrame();    // Mark the next frame as ready
 
         view.repaint();         // Draw it.
-		
         
         Timer t = new Timer(16, this);  // Triggers every 16 milliseconds, reports actions to 'this' object.
         t.start();
@@ -142,20 +149,32 @@ public class Control implements Runnable,
     
     /**
      * Update game to the next frame
-     * when the timer
+     * when the timer triggers
+     * check that game is not over
      */
 	@Override
-	public void actionPerformed (ActionEvent e) 
+	public void actionPerformed (ActionEvent e)
 	{
-		state.startFrame();
-        for (GameObject go : state.getFrameObjects())
-            go.update(0);
-        state.finishFrame();
+		if(!state.gameOver)
+		{
+			state.startFrame();
+			roundControl.doNextFrame();
+			for (GameObject go : state.getFrameObjects())
+				go.update(state.getElapsedTime());
+			state.finishFrame();
+		}
+		else if(state.getLives() != -1) // game is over
+		{
+			state.setLives(-1); // make sure this if statement only triggers the once
+			state.startFrame();
+			state.addGameObject(new GameOver(this)); // display the game over screen
+			state.finishFrame();
+		}
         view.repaint();
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent e) 
+	public void mouseDragged(MouseEvent e)
 	{
 
 	}
