@@ -66,6 +66,7 @@ public class Salt extends GameObject implements Clickable
 			if(mouseX < 0 || mouseX > 600 || mouseY < 0 || mouseY > 600)
 			{
 				this.isExpired = true;
+				//give their money back
 			}
 			return true;
 		}

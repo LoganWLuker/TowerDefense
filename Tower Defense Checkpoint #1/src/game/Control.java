@@ -88,7 +88,7 @@ public class Control implements Runnable,
         //state.addGameObject(new Krogdor(this.state,this));  // Add one snail to our list
         //state.addGameObject(new Snail(this.state,this));  // Add one snail to our list
         
-        roundControl = new RoundControl(this.state, this);
+        roundControl = new RoundControl(this, this.state);
         roundControl.startRound(state.getRound());
         
         state.finishFrame();    // Mark the next frame as ready
@@ -132,8 +132,10 @@ public class Control implements Runnable,
             BufferedImage image = javax.imageio.ImageIO.read(imageStream);
             //put the image in the map
             imageCache.put(filename, image);
+            
             //Demonstrate that they only load once
-            System.out.println("Loading " + filename);
+            //System.out.println("Loading " + filename);
+            
             //return the loaded image
             return image;
         }
@@ -144,17 +146,21 @@ public class Control implements Runnable,
             return null;  // Does not happen, the application has exited.
         }
     }
-    
+    /**
+     * Prevents repetitive code.
+     * Takes in a string and returns corresponding enemy
+     * 
+     * @param enemy (type of enemy to return)
+     * @return The corresponding enemy object
+     */
     public GameObject getEnemy(String enemy)
 	{
 		if(enemy.equalsIgnoreCase("Krogdor"))
-			return new Krogdor(this.state,this);
+			return new Krogdor(this, this.state);
 		if(enemy.equalsIgnoreCase("Snail"))
-			return new Snail(this.state,this);
+			return new Snail(this, this.state);
 		return null;
 	}
-    
-    
     /**
      * Update game to the next frame
      * when the timer triggers

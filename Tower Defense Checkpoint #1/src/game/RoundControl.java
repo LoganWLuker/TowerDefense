@@ -23,7 +23,7 @@ public class RoundControl
 	 * @param state
 	 * @param control
 	 */
-	RoundControl (State state, Control control) 
+	RoundControl (Control control, State state)
 	{
 		counter = 0;
 		frame = 0;
@@ -41,28 +41,6 @@ public class RoundControl
 		ClassLoader myLoader = this.getClass().getClassLoader();
 		InputStream roundStream = myLoader.getResourceAsStream("resources/round_" + roundNum + ".txt");
 		Scanner roundScanner = new Scanner(roundStream);
-		//uncomment to test round length
-		
-//		int total = 0;
-//		int addThis = 0;
-//		int lastInt;
-//		int currentInt = 0;
-//		String lastWord = "";
-//		String currentWord;
-//		for(int z = 0; roundScanner.hasNext(); z++)
-//		{
-//			addThis = roundScanner.nextInt();
-//			lastInt = currentInt;
-//			currentInt = addThis;
-//			total += addThis;
-//			currentWord = roundScanner.next();
-//			if(currentWord.equalsIgnoreCase("wait"))
-//			{
-//				total -= addThis;
-//				lastWord = currentWord;
-//			}
-//		}
-//		System.out.println(total);
 		
 		//read the round file to check the size
 		int roundSize = roundScanner.nextInt();
@@ -73,11 +51,64 @@ public class RoundControl
 		//create quantity array
 		quantities = new int[roundSize];
 		int quantity;
+		int repeat;
+		int i;
 		//Scan the file and set the array values based on it
-		for(int i = 0; roundScanner.hasNext(); i++)
+		for(i = 0; roundScanner.hasNext(); i++)
 		{
-			quantities[i] = roundScanner.nextInt();
-			enemy = roundScanner.next();
+			repeat = roundScanner.nextInt();
+			if (repeat < 0)
+			{
+				int z;
+				quantity = roundScanner.nextInt();
+				for(z = 0; quantity > 0; z++)
+				{
+					quantities[i] = quantity;
+					enemy = roundScanner.next();
+					
+					if(!enemy.equalsIgnoreCase("wait"))
+					{
+						z++;
+						wait = roundScanner.nextInt();
+						roundScanner.next();
+						
+						//Add Enemies according to their quantity
+						for(int c = 0; c < quantity; c++)
+						{
+							enemies[i+c] = control.getEnemy(enemy);
+							quantities[i+c+1] = wait;
+							i+=1;
+						}
+						i+=quantity-1;
+					}
+					quantity = roundScanner.nextInt();
+					i++;
+				}
+				repeat ++;
+				int zCount = 0;
+				for(i = i; repeat < 0; i++)
+				{
+					if(!(enemies[i-z] == null))
+						enemies[i] = control.getEnemy(enemies[i-z].toString());
+					else
+						enemies[i] = enemies[i-z];
+					quantities[i] = quantities[i-z];
+					zCount ++;
+					if(zCount == z)
+					{
+						repeat ++;
+						zCount = 0;
+					}
+				}
+				if(roundScanner.hasNext())
+					quantities[i] = roundScanner.nextInt();
+				
+			}else
+				quantities[i] = repeat;
+			if(roundScanner.hasNext())
+				enemy = roundScanner.next();
+			else
+				return;
 			quantity = quantities[i];
 			if(!enemy.equalsIgnoreCase("wait"))
 			{
@@ -94,6 +125,8 @@ public class RoundControl
 				i+=quantity-1;
 			}
 		}
+		//Uncomment to print out the round length
+		System.out.println(i);
 		roundScanner.close();
 	}
 	/**
