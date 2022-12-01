@@ -41,39 +41,58 @@ public class RoundControl
 		ClassLoader myLoader = this.getClass().getClassLoader();
 		InputStream roundStream = myLoader.getResourceAsStream("resources/round_" + roundNum + ".txt");
 		Scanner roundScanner = new Scanner(roundStream);
+		//uncomment to test round length
+		
+//		int total = 0;
+//		int addThis = 0;
+//		int lastInt;
+//		int currentInt = 0;
+//		String lastWord = "";
+//		String currentWord;
+//		for(int z = 0; roundScanner.hasNext(); z++)
+//		{
+//			addThis = roundScanner.nextInt();
+//			lastInt = currentInt;
+//			currentInt = addThis;
+//			total += addThis;
+//			currentWord = roundScanner.next();
+//			if(currentWord.equalsIgnoreCase("wait"))
+//			{
+//				total -= addThis;
+//				lastWord = currentWord;
+//			}
+//		}
+//		System.out.println(total);
+		
 		//read the round file to check the size
 		int roundSize = roundScanner.nextInt();
 		String enemy;
+		int wait = 0;
 		//create GameObject array
 		enemies = new GameObject[roundSize];
 		//create quantity array
 		quantities = new int[roundSize];
+		int quantity;
 		//Scan the file and set the array values based on it
 		for(int i = 0; roundScanner.hasNext(); i++)
 		{
 			quantities[i] = roundScanner.nextInt();
 			enemy = roundScanner.next();
-			//check if Krogdor
-			if(enemy.equalsIgnoreCase("Krogdor"))
+			quantity = quantities[i];
+			if(!enemy.equalsIgnoreCase("wait"))
 			{
-				//Account for quantities higher than 1
-				for(int c = 0; c < quantities[i]; c++)
+				wait = roundScanner.nextInt();
+				roundScanner.next();
+				
+				//Add Enemies according to their quantity
+				for(int c = 0; c < quantity; c++)
 				{
-					enemies[i+c] = new Krogdor(this.state, this.control);
-					i+=c;
+					enemies[i+c] = control.getEnemy(enemy);
+					quantities[i+c+1] = wait;
+					i+=1;
 				}
+				i+=quantity-1;
 			}
-			//check if Snail
-			else if(enemy.equalsIgnoreCase("Snail"))
-			{			
-				//Account for quantities higher than 1
-				for(int c = 0; c < quantities[i]; c++)
-				{
-					enemies[i+c] = new Snail(this.state, this.control);
-					i+=c;
-				}
-			}
-			
 		}
 		roundScanner.close();
 	}

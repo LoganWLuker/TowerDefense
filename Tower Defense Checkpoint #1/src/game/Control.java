@@ -17,7 +17,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -145,6 +144,15 @@ public class Control implements Runnable,
             return null;  // Does not happen, the application has exited.
         }
     }
+    
+    public GameObject getEnemy(String enemy)
+	{
+		if(enemy.equalsIgnoreCase("Krogdor"))
+			return new Krogdor(this.state,this);
+		if(enemy.equalsIgnoreCase("Snail"))
+			return new Snail(this.state,this);
+		return null;
+	}
     
     
     /**
