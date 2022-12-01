@@ -52,7 +52,6 @@ public class Krogdor extends GameObject
 			
 			int currentLives = control.state.getLives();
 			state.setLives(currentLives - damage);
-			//state.addGameObject(new Krogdor(this.state,this.control));
 		}
 	}
 	public String toString ()

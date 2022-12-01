@@ -10,7 +10,7 @@ package game;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public class Snail extends GameObject
+public class ShockedGuy extends GameObject
 {
 	private double percentage;
 	private int damage;
@@ -22,10 +22,10 @@ public class Snail extends GameObject
 	 * @param control
 	 * 				  snail control
 	 */
-    public Snail (Control control, State state) 
+    public ShockedGuy (Control control, State state)
     {
-    	velocity = 0.05; //0.05
-    	damage = 1;
+    	velocity = 0.2; //0.05
+    	damage = 2;
     	percentage = 0;
         isVisible = true;
         isExpired = false;
@@ -51,7 +51,7 @@ public class Snail extends GameObject
 	}
 	public String toString ()
 	{
-		return "Snail";
+		return "ShockedGuy";
 	}
 	/**
 	 * Draw the snail image based on its percentage
@@ -60,6 +60,6 @@ public class Snail extends GameObject
 	public void draw (Graphics g) 
 	{
 		Point loc = control.getPath().convertToCoordinates(percentage);
-        g.drawImage(control.getImage("snail.png"), loc.x-20, loc.y-20, null);
+        g.drawImage(control.getImage("shockedGuySmall.png"), loc.x-56, loc.y-50, null);
 	}
 }

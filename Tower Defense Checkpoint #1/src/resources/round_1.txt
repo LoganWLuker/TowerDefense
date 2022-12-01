@@ -1,10 +1,20 @@
-464
--5 1 krogdor 0 wait 1 snail 0 wait -1
-20 wait
--5 1 krogdor 0 wait 1 snail 0 wait -1
-20 wait
--5 1 krogdor 0 wait 1 snail 0 wait -1
-100 wait
+430
+3 ShockedGuy 20 wait
+50 wait
+-5 1 krogdor 0 wait 1 snail 0 wait -1 0 wait
+-5 1 krogdor 0 wait 1 snail 0 wait -1 0 wait
+-5 1 krogdor 0 wait 1 snail 0 wait -1 0 wait
+
 10 snail 10 wait
 90 wait
--5 1 krogdor 0 wait 1 snail 10 wait -1
+
+-5 1 krogdor 0 wait 1 snail 10 wait -1 0 wait
+-5 1 krogdor 0 wait 1 snail 0 wait -1 0 wait
+-5 1 krogdor 0 wait 1 snail 0 wait -1 0 wait
+-5 1 krogdor 0 wait 1 snail 0 wait -1 0 wait
+
+10 snail 0 wait
+
+-5 1 krogdor 0 wait 1 snail 0 wait -1 0 wait
+
+10 snail 0 wait

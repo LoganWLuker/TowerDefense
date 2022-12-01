@@ -159,6 +159,8 @@ public class Control implements Runnable,
 			return new Krogdor(this, this.state);
 		if(enemy.equalsIgnoreCase("Snail"))
 			return new Snail(this, this.state);
+		if(enemy.equalsIgnoreCase("ShockedGuy"))
+			return new ShockedGuy(this, this.state);
 		return null;
 	}
     /**
