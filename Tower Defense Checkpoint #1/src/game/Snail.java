@@ -1,3 +1,7 @@
+package game;
+
+import java.awt.Graphics;
+import java.awt.Point;
 /**
  * Snail Class describes the snail enemy
  * moves along the path each update
@@ -5,25 +9,22 @@
  * @author  Logan Luker & Bruce Crockett
  * @version 11/15/2022
  */
-package game;
-
-import java.awt.Graphics;
-import java.awt.Point;
-
 public class Snail extends GameObject
 {
 	private double percentage;
 	private int damage;
 	Control control;
 	State state;
+	double velocity;
 	/**
 	 * Control constructor
 	 * @param control
 	 * 				  snail control
 	 */
-    public Snail (State state, Control control) 
+    public Snail (Control control, State state) 
     {
-    	damage = 10;
+    	velocity = 0.05; //0.05
+    	damage = 1;
     	percentage = 0;
         isVisible = true;
         isExpired = false;
@@ -38,15 +39,18 @@ public class Snail extends GameObject
 	{
 		if (percentage <= 1)
 		{
-			percentage += 0.05 * state.getElapsedTime();
+			percentage += velocity * state.getElapsedTime();
 		} else 
 		{
 			this.isExpired = true;
 			
 			int currentLives = control.state.getLives();
 			control.state.setLives(currentLives - damage);
-			//state.addGameObject(new Snail(this.state,this.control));
 		}
+	}
+	public String toString ()
+	{
+		return "Snail";
 	}
 	/**
 	 * Draw the snail image based on its percentage

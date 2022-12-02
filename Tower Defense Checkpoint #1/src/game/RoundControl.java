@@ -23,7 +23,7 @@ public class RoundControl
 	 * @param state
 	 * @param control
 	 */
-	RoundControl (State state, Control control) 
+	RoundControl (Control control, State state)
 	{
 		counter = 0;
 		frame = 0;
@@ -41,40 +41,93 @@ public class RoundControl
 		ClassLoader myLoader = this.getClass().getClassLoader();
 		InputStream roundStream = myLoader.getResourceAsStream("resources/round_" + roundNum + ".txt");
 		Scanner roundScanner = new Scanner(roundStream);
-		//read the round file to check the size
+		
+		// read the round file to check the size
 		int roundSize = roundScanner.nextInt();
 		String enemy;
-		//create GameObject array
+		int wait = 0;
+		// create GameObject array
 		enemies = new GameObject[roundSize];
-		//create quantity array
+		// create quantity array
 		quantities = new int[roundSize];
-		//Scan the file and set the array values based on it
-		for(int i = 0; roundScanner.hasNext(); i++)
+		int quantity;
+		int repeat;
+		int i;
+		// Scan the file and set the array values based on it
+		for(i = 0; roundScanner.hasNext(); i++)
 		{
-			quantities[i] = roundScanner.nextInt();
-			enemy = roundScanner.next();
-			//check if Krogdor
-			if(enemy.equalsIgnoreCase("Krogdor"))
+			// store the first int, assuming its a repeat count
+			repeat = roundScanner.nextInt();
+			if (repeat < 0) // if it is indeed a repeat count, continue as such
 			{
-				//Account for quantities higher than 1
-				for(int c = 0; c < quantities[i]; c++)
+				int z; // count the commands
+				quantity = roundScanner.nextInt(); // store the enemy quantity
+				for(z = 0; quantity > 0; z++) // count the commands
 				{
-					enemies[i+c] = new Krogdor(this.state, this.control);
-					i+=c;
+					quantities[i] = quantity; // store our quantity in the array
+					enemy = roundScanner.next(); // get our enemy string
+					
+					if(!enemy.equalsIgnoreCase("wait")) // if it's not a wait, treat it as an enemy
+					{
+						z++; // advance the counter for the wait that comes after the enemy
+						wait = roundScanner.nextInt(); // store how long to wait after spawning the enemy
+						roundScanner.next(); //advance to the end of the line past the wait
+						
+						// Add Enemies according to their quantity
+						for(int c = 0; c < quantity; c++)
+						{
+							enemies[i+c] = control.getEnemy(enemy); // grab the enemy type and add it to the array
+							quantities[i+c+1] = wait; // grab the wait time and add it after the enemy
+							i++; // advance i accordingly to move through the array
+						}
+						i+=quantity-1; // advance i based on the quantity
+					}
+					quantity = roundScanner.nextInt(); // set up the next quantity
+					i++; // advance through the array
 				}
-			}
-			//check if Snail
-			else if(enemy.equalsIgnoreCase("Snail"))
-			{			
-				//Account for quantities higher than 1
-				for(int c = 0; c < quantities[i]; c++)
+				repeat ++; // account for already doing the commands once
+				int zCount = 0; // to check if we've done all the commands before incrementing repeat
+				for(i = i; repeat < 0; i++)
 				{
-					enemies[i+c] = new Snail(this.state, this.control);
-					i+=c;
+					if(enemies[i-z] != null) // if the enemy isn't null, copy a new version into the array
+						enemies[i] = control.getEnemy(enemies[i-z].toString());
+					else
+						enemies[i] = enemies[i-z]; // just copy the null without getting a new instance
+					quantities[i] = quantities[i-z]; // copy the quantity to the array
+					zCount ++; // we've copied one command, add to the count
+					if(zCount == z) // have we completed all the commands?
+					{
+						repeat ++; // if so, one repeat is complete, increment it.
+						zCount = 0; // reset our command count
+					}
 				}
-			}
+				if(roundScanner.hasNext()) // if we're not at the very end, set up the next quantity
+					quantities[i] = roundScanner.nextInt();
+			}else
+				quantities[i] = repeat; // if we're not repeating, just set up the quantity as normal
 			
+			if(roundScanner.hasNext()) // if we're not at the very end, check the next enemy type
+				enemy = roundScanner.next();
+			else
+				enemy = "wait"; // otherwise, just treat it as a wait to skip the if statement
+			quantity = quantities[i]; // store the current quantity
+			if(!enemy.equalsIgnoreCase("wait")) // if it's a wait, ignore it, otherwise It's an enemy
+			{
+				wait = roundScanner.nextInt();
+				roundScanner.next();
+				
+				//Add Enemies according to their quantity
+				for(int c = 0; c < quantity; c++)
+				{
+					enemies[i+c] = control.getEnemy(enemy); // get the enemy type and add it to the array
+					quantities[i+c+1] = wait; // get how long to wait and add it to the array
+					i+=1; // advance i
+				}
+				i+=quantity-1; // advance i however far we've gone
+			}
 		}
+		//Uncomment to print out the round length
+		System.out.println(i);
 		roundScanner.close();
 	}
 	/**

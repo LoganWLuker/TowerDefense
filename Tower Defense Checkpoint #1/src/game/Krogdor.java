@@ -17,14 +17,16 @@ public class Krogdor extends GameObject
 	private int damage;
 	Control control;
 	State state;
+	double velocity;
 	/**
 	 * Control constructor
 	 * @param control
 	 * 				  Krogdor control
 	 */
-    public Krogdor (State state, Control control) 
+    public Krogdor (Control control, State state) 
     {
-    	damage = 10;
+    	velocity = 0.1; //0.1
+    	damage = 1;
     	percentage = 0;
     	spriteNum = 0;
         isVisible = true;
@@ -40,7 +42,7 @@ public class Krogdor extends GameObject
 	{
 		if (percentage < 1)
 		{
-			percentage += 0.1 * state.getElapsedTime();
+			percentage += velocity * state.getElapsedTime();
 			spriteNum += 8 * state.getElapsedTime();
 			if(spriteNum >= 4)
 				spriteNum = 0;
@@ -50,8 +52,11 @@ public class Krogdor extends GameObject
 			
 			int currentLives = control.state.getLives();
 			state.setLives(currentLives - damage);
-			//state.addGameObject(new Krogdor(this.state,this.control));
 		}
+	}
+	public String toString ()
+	{
+		return "Krogdor";
 	}
 	/**
 	 * Draw the Krogdor image based on its percentage

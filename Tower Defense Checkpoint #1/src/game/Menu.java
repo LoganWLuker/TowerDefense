@@ -66,6 +66,6 @@ public class Menu extends GameObject
 		//Draw cash
 		g.setColor(Color.BLUE);
 		this.cash = state.getCash();
-		g.drawString("Cash: " + this.cash, 525, 34);		
+		g.drawString("Cash: " + this.cash, 525, 34);
 	}
 }
