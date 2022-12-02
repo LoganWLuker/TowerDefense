@@ -97,6 +97,8 @@ public class Control implements Runnable,
         
         Timer t = new Timer(16, this);  // Triggers every 16 milliseconds, reports actions to 'this' object.
         t.start();
+        //SoundClipTest music = new SoundClipTest("resources/Title Theme-Saying Goodbye.wav");
+        SoundClipTest.LEVEL1.play();
 	}
 	/**
 	 * get current path

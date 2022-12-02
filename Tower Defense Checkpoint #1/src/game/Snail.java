@@ -1,3 +1,7 @@
+package game;
+
+import java.awt.Graphics;
+import java.awt.Point;
 /**
  * Snail Class describes the snail enemy
  * moves along the path each update
@@ -5,11 +9,6 @@
  * @author  Logan Luker & Bruce Crockett
  * @version 11/15/2022
  */
-package game;
-
-import java.awt.Graphics;
-import java.awt.Point;
-
 public class Snail extends GameObject
 {
 	private double percentage;

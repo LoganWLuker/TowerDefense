@@ -59,6 +59,7 @@ public class MenuButton extends GameObject implements Clickable
 		if(mouseX > 630 && mouseX < 770
 		   && mouseY > 80 && mouseY < 220)
 		{
+			//SoundClipTest.LEVEL1.getFrameValue();
 			state.startFrame();
 			state.addGameObject(new Salt(this.state,this.control));
 			state.finishFrame();
