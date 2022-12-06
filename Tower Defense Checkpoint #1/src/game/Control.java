@@ -204,7 +204,7 @@ public class Control implements Runnable,
 		this.mouseY = e.getY();
 		
 		//System.out.println("X: " + mouseX + " | Y: " + mouseY);	
-		System.out.println("Round " + state.getRound() + " is on frame #" + roundControl.getFrame() + ".");
+		//System.out.println("Round " + state.getRound() + " is on frame #" + roundControl.getFrame() + ".");
 	}
 
 	@Override

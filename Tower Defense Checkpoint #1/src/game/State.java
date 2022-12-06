@@ -18,7 +18,7 @@ public class State
 	
 	boolean gameOver = false;
 	int lives, cash;
-	double currentRound;
+	int currentRound;
 	double elapsedTime;
 	double totalTime;
 	private double lastTime;
@@ -109,11 +109,11 @@ public class State
 	{
 		return this.totalTime;
 	}
-	public double getRound()
+	public int getRound()
 	{
 		return this.currentRound;
 	}
-	public void setRound(double target)
+	public void setRound(int target)
 	{
 		this.currentRound = target;
 	}

@@ -131,7 +131,7 @@ public class RoundControl
 		//Uncomment to print out the round length
 		//Extra space is always round 'length' in time PLUS: s = 250, 
 		//which is our parameter for time between rounds in-game
-		System.out.println("Round: " + roundNum + " | minArrayLength: " + i);
+		//System.out.println("Round: " + roundNum + " | minArrayLength: " + i);
 		roundScanner.close();
 	}
 	/**
