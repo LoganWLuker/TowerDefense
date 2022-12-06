@@ -19,7 +19,6 @@ public class Salt extends Tower implements Clickable
 	int fireRate;
 	State state;
 	Control control;
-	int cost;
 	/**
 	 * Default constructor
 	 * @param state
@@ -100,6 +99,4 @@ public class Salt extends Tower implements Clickable
 		}
 		return false;
 	}
-	public int getCost() { return this.cost; }
-
 }
