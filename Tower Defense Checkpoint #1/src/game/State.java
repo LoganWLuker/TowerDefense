@@ -19,6 +19,7 @@ public class State
 	boolean gameOver = false;
 	int lives, cash;
 	int currentRound;
+	int currentFrame; //startFrame ++'s this, towers with fire rate 'n' fire every 'n' frames
 	double elapsedTime;
 	double totalTime;
 	private double lastTime;
@@ -31,6 +32,7 @@ public class State
 	{
 		currentFrameGameObjects = new ArrayList<GameObject> ();
         lastTime = System.currentTimeMillis();
+        currentFrame = -1;
 	}
 	/**
 	 * get current frame objects
@@ -45,6 +47,7 @@ public class State
 	 */
 	public void startFrame ()
     {
+		currentFrame++;
         nextFrameGameObjects = new ArrayList<GameObject>();    // Creates empty list
         nextFrameGameObjects.addAll(currentFrameGameObjects);  // Add all the current ones to the new list.  This is more clear
         // Set up time calculations
@@ -135,4 +138,5 @@ public class State
 		}
 		return target;
 	}
+	public int getCurrentFrame() { return this.currentFrame; }
 }

@@ -8,7 +8,7 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class MenuButton extends GameObject implements Clickable
+public class SaltButton extends GameObject implements Clickable
 {
 	Control control;
 	State state;
@@ -17,7 +17,7 @@ public class MenuButton extends GameObject implements Clickable
 	 * @param control
 	 * @param state
 	 */
-	public MenuButton (Control control, State state)
+	public SaltButton (Control control, State state)
 	{
 		this.control = control;
 		this.state = state;
@@ -31,7 +31,6 @@ public class MenuButton extends GameObject implements Clickable
 	@Override
 	public void update(double elapsedTime) 
 	{
-		// TODO Auto-generated method stub
 		
 	}
 	/**
@@ -55,8 +54,9 @@ public class MenuButton extends GameObject implements Clickable
 	@Override
 	public boolean consumeClick(int mouseX, int mouseY) 
 	{
+		Salt thisSalt = new Salt(this.state, this.control);
 		if(mouseX > 630 && mouseX < 770
-		   && mouseY > 80 && mouseY < 220)
+		   && mouseY > 80 && mouseY < 220 && state.getCash() >= thisSalt.getCost())
 		{
 //			if((state.getRound()/0.5) % 2 != 0)
 //			{
@@ -65,7 +65,7 @@ public class MenuButton extends GameObject implements Clickable
 //			}
 			//SoundClipTest.LEVEL1.getFrameValue();
 			state.startFrame();
-			state.addGameObject(new Salt(this.state,this.control));
+			state.addGameObject(thisSalt);
 			state.finishFrame();
 			control.view.repaint();
 			return true;

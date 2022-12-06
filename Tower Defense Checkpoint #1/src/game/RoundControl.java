@@ -8,6 +8,7 @@ package game;
 
 import java.io.InputStream;
 import java.util.Scanner;
+//TODO: space between rounds is too long
 
 public class RoundControl 
 {

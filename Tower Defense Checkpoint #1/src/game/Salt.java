@@ -19,6 +19,7 @@ public class Salt extends Tower implements Clickable
 	int fireRate;
 	State state;
 	Control control;
+	int cost;
 	/**
 	 * Default constructor
 	 * @param state
@@ -26,10 +27,11 @@ public class Salt extends Tower implements Clickable
 	 */
 	public Salt(State state, Control control)
 	{
+		this.cost = 300;
 		xPos = control.getMouseX();
 		yPos = control.getMouseY();
 		towerRadius = 100;
-		fireRate = 10;
+		fireRate = 30; //not a true rate; smaller is faster, 1 is fastest
 		this.isVisible = true;
 		this.isExpired = false;
 		this.isMoving = true;
@@ -50,9 +52,10 @@ public class Salt extends Tower implements Clickable
 		}else
 		{
 			Enemy nearestEnemy = state.findNearestFirstEnemy(new Point(xPos,yPos), towerRadius);
-			if(nearestEnemy != null && control.roundControl.frame % fireRate == 0)
+			if(nearestEnemy != null && state.getCurrentFrame() % fireRate == 0)
 			{
 				state.addGameObject(new SaltCrystals(control,state,this,nearestEnemy));
+				nearestEnemy.expire();
 				//System.out.println("There's an enemy near");
 			}
 		}
@@ -92,9 +95,11 @@ public class Salt extends Tower implements Clickable
 				this.isExpired = true;
 				//give their money back
 			}
+			state.setCash(state.getCash() - this.cost);
 			return true;
 		}
 		return false;
 	}
+	public int getCost() { return this.cost; }
 
 }
