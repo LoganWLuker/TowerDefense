@@ -23,14 +23,15 @@ public class Snail extends GameObject
 	 */
     public Snail (Control control, State state) 
     {
-    	velocity = 0.05; //0.05
-    	damage = 1;
+    	damage = 3;
     	percentage = 0;
         isVisible = true;
         isExpired = false;
         
         this.state = state;
         this.control = control;
+        
+        velocity = 0.08 + .04 * (state.getRound()-1);
     }
     /**
      * Update the snail by moving it a small percentage along the path

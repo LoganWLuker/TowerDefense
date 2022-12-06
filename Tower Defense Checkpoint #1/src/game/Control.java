@@ -72,9 +72,9 @@ public class Control implements Runnable,
 		pathScanner.close();
 		//set state
 		state = new State ();
-		state.setCash(5000);
+		state.setCash(500);
 		state.setLives(100);
-		state.setRound(1);
+		state.setRound(5);
 		//load the view
 		view = new View (this, state);
 		
@@ -204,6 +204,7 @@ public class Control implements Runnable,
 		this.mouseY = e.getY();
 		
 		//System.out.println("X: " + mouseX + " | Y: " + mouseY);	
+		System.out.println("Round " + state.getRound() + " is on frame #" + roundControl.getFrame() + ".");
 	}
 
 	@Override

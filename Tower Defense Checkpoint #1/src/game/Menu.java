@@ -14,7 +14,7 @@ public class Menu extends GameObject
 {
 	Control control;
 	State state;
-	int lives, cash;
+	int lives, cash, extraCashWidth, extraLivesWidth, extraCashDigits, extraLivesDigits;
 	/**
 	 * Default constructor
 	 * 
@@ -55,17 +55,31 @@ public class Menu extends GameObject
 		g.setFont(new Font("Proxima Nova", 0, 20));
 		g.drawString("Towers", 665, 30);
 		
-		// TODO: draw bounding boxes around lives and cash
+		this.lives = state.getLives();
+		this.cash = state.getCash();
+		
+		this.extraCashDigits = (int) Math.ceil(Math.log10((double) (this.cash + 1))) - 3;
+		this.extraCashWidth = 10*this.extraCashDigits;
+		
+		this.extraLivesDigits = (int) Math.ceil(Math.log10((double) (this.lives + 1))) - 3;
+		this.extraLivesWidth = 10*this.extraLivesDigits;
+		
+		
+		//Draw yellow bounding box
+		g.setColor(Color.YELLOW);
+		g.fillRect(522 - Math.max(this.extraCashWidth, this.extraLivesWidth), 6, 68 + Math.max(this.extraCashWidth, this.extraLivesWidth), 48);
 		
 		//Draw lives
 		g.setColor(Color.RED);
 		g.setFont(new Font("Proxima Nova", 0, 13));
-		this.lives = state.getLives();
-		g.drawString("Lives: " + this.lives, 525, 17);
+		g.drawString("Lives: " + this.lives, 525 - Math.max(this.extraCashWidth, this.extraLivesWidth), 17);
 		
 		//Draw cash
 		g.setColor(Color.BLUE);
-		this.cash = state.getCash();
-		g.drawString("Cash: " + this.cash, 525, 34);
+		g.drawString("Cash: " + this.cash, 525 - Math.max(this.extraCashWidth, this.extraLivesWidth), 34);
+		
+		//Draw round
+		g.setColor(Color.BLACK);
+		g.drawString("Round: " + state.getRound(), 525 - Math.max(this.extraCashWidth, this.extraLivesWidth), 51);
 	}
 }

@@ -21,6 +21,7 @@ public class View extends JPanel
 	//fields
 	Control control;
 	State state;
+	
 	/**
 	 * Makes a frame for the game to view in
 	 * 

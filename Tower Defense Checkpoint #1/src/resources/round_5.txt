@@ -1,0 +1,8 @@
+580
+7 ShockedGuy 15 wait
+150 wait
+3 Snail 25 wait
+50 wait
+3 Snail 25 wait
+200 wait
+1 Krogdor 10 wait

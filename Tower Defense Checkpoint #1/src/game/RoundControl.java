@@ -127,7 +127,9 @@ public class RoundControl
 			}
 		}
 		//Uncomment to print out the round length
-		System.out.println(i);
+		//Extra space is always round 'length' in time PLUS: s = 250, 
+		//which is our parameter for time between rounds in-game
+		System.out.println("Round: " + roundNum + " | minArrayLength: " + i);
 		roundScanner.close();
 	}
 	/**
@@ -138,7 +140,12 @@ public class RoundControl
 	{
 		//if we're past the instructions, stop reading them
 		if(frame+1 > enemies.length)
+		{
+			state.setRound(state.getRound() + 1);
+			startRound(state.getRound());
+			frame = 0;
 			return;
+		}
 		//code for waiting
 		if(enemies[frame] == null)
 		{
@@ -157,4 +164,6 @@ public class RoundControl
 			frame ++;
 		}
 	}
+	
+	public int getFrame() { return this.frame; }
 }

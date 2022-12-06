@@ -24,14 +24,14 @@ public class ShockedGuy extends GameObject
 	 */
     public ShockedGuy (Control control, State state)
     {
-    	velocity = 0.2; //0.05
-    	damage = 2;
+    	damage = 1;
     	percentage = 0;
         isVisible = true;
         isExpired = false;
         
         this.state = state;
         this.control = control;
+    	velocity = 0.05 + .02 * state.getRound(); //0.05
     }
     /**
      * Update the snail by moving it a small percentage along the path

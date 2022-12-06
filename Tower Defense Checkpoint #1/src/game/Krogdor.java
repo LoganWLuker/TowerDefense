@@ -25,8 +25,7 @@ public class Krogdor extends GameObject
 	 */
     public Krogdor (Control control, State state) 
     {
-    	velocity = 0.1; //0.1
-    	damage = 1;
+    	damage = 10;
     	percentage = 0;
     	spriteNum = 0;
         isVisible = true;
@@ -34,6 +33,7 @@ public class Krogdor extends GameObject
         
         this.state = state;
         this.control = control;
+        velocity = 0.12 + .03 * (state.getRound()-4);
     }
     /**
      * Update the Krogdor by moving it a small percentage along the path
