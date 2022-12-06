@@ -10,7 +10,7 @@ package game;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public class Krogdor extends GameObject
+public class Krogdor extends Enemy
 {
 	private double percentage;
 	private double spriteNum;
@@ -26,6 +26,7 @@ public class Krogdor extends GameObject
     public Krogdor (Control control, State state) 
     {
     	damage = 10;
+
     	percentage = 0;
     	spriteNum = 0;
         isVisible = true;
@@ -66,5 +67,20 @@ public class Krogdor extends GameObject
 	{
 		Point loc = control.getPath().convertToCoordinates(percentage);
         g.drawImage(control.getImage("krogdor"+(int)spriteNum+".png"), loc.x-16, loc.y-64, null);
+	}
+	@Override
+	public Point getPosition() 
+	{
+		Point loc = control.getPath().convertToCoordinates(percentage);
+		return loc;
+	}
+	@Override
+	public double getPercentage() 
+	{
+		return this.percentage;
+	}
+	public double getVelocity()
+	{
+		return this.velocity;
 	}
 }

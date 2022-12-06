@@ -74,7 +74,7 @@ public class Control implements Runnable,
 		state = new State ();
 		state.setCash(500);
 		state.setLives(100);
-		state.setRound(5);
+		state.setRound(1); //0.5
 		//load the view
 		view = new View (this, state);
 		

@@ -36,10 +36,12 @@ public class RoundControl
 	 * @param roundNum
 	 * 					round we want to start
 	 */
-	public void startRound(int roundNum)
+	public void startRound(double roundNum)
 	{
+//		if((state.getRound()/0.5) % 2 != 0)
+//			return;
 		ClassLoader myLoader = this.getClass().getClassLoader();
-		InputStream roundStream = myLoader.getResourceAsStream("resources/round_" + roundNum + ".txt");
+		InputStream roundStream = myLoader.getResourceAsStream("resources/round_" + (int)roundNum + ".txt");
 		Scanner roundScanner = new Scanner(roundStream);
 		
 		// read the round file to check the size
@@ -138,6 +140,8 @@ public class RoundControl
 	 */
 	public void doNextFrame()
 	{
+//		if((state.getRound()/0.5) % 2 != 0)
+//			return;
 		//if we're past the instructions, stop reading them
 		if(frame+1 > enemies.length)
 		{
