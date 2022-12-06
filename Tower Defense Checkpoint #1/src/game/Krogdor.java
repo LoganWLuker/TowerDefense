@@ -26,7 +26,7 @@ public class Krogdor extends Enemy
     public Krogdor (Control control, State state) 
     {
     	damage = 10;
-
+    	reward = 400;
     	percentage = 0;
     	spriteNum = 0;
         isVisible = true;

@@ -55,6 +55,7 @@ public class Salt extends Tower implements Clickable
 			{
 				state.addGameObject(new SaltCrystals(control,state,this,nearestEnemy));
 				nearestEnemy.expire();
+				state.setCash(state.getCash() + nearestEnemy.getReward());
 				//System.out.println("There's an enemy near");
 			}
 		}
