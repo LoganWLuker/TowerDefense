@@ -27,7 +27,7 @@ public class Snail extends Enemy
     	percentage = 0;
         isVisible = true;
         isExpired = false;
-        reward = 150;
+        reward = 30;
         
         this.state = state;
         this.control = control;

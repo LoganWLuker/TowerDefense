@@ -26,7 +26,7 @@ public class Krogdor extends Enemy
     public Krogdor (Control control, State state) 
     {
     	damage = 10;
-    	reward = 400;
+    	reward = 50;
     	percentage = 0;
     	spriteNum = 0;
         isVisible = true;
@@ -34,7 +34,7 @@ public class Krogdor extends Enemy
         
         this.state = state;
         this.control = control;
-        velocity = 0.12 + .03 * (state.getRound()-4);
+        velocity = 0.2 + .03 * (state.getRound()-4);
     }
     /**
      * Update the Krogdor by moving it a small percentage along the path

@@ -6,6 +6,7 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 public class TeslaButton extends GameObject implements Clickable
@@ -43,6 +44,9 @@ public class TeslaButton extends GameObject implements Clickable
 		g.setColor(Color.CYAN);
 		g.fillRoundRect(630, 300, 140, 140, 0, 0);
 		g.drawImage(control.getImage("tesla.png"), 650, 320, null);
+		g.setFont(new Font("Proxima Nova", 0, 13));
+		g.setColor(Color.black);
+		g.drawString("700 cash", 674, 430);
 	}
 	/**
 	 * Consume Click
@@ -58,16 +62,11 @@ public class TeslaButton extends GameObject implements Clickable
 		if(mouseX > 630 && mouseX < 770
 		   && mouseY > 300 && mouseY < 440 && state.getCash() >= thisTesla.getCost())
 		{
-//			if((state.getRound()/0.5) % 2 != 0)
-//			{
-//				state.setRound(state.getRound()+0.5);
-//				control.roundControl.startRound(state.getRound());
-//			}
-			//SoundClipTest.LEVEL1.getFrameValue();
 			state.startFrame();
 			state.addGameObject(thisTesla);
 			state.finishFrame();
 			control.view.repaint();
+			state.setCash(state.getCash() - thisTesla.getCost());
 			return true;
 		}
 		return false;

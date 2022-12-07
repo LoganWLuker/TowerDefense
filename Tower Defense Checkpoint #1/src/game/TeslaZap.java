@@ -35,7 +35,7 @@ public class TeslaZap extends GameObject
 	@Override
 	public void draw(Graphics g) 
 	{
-		g.drawImage(control.getImage("lightning.png"), xPos-29, yPos-29, null);
+		g.drawImage(control.getImage("lightning.png"), xPos-100, yPos-180, null);
 	}
 
 }

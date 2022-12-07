@@ -1,8 +1,2 @@
-850
-5 ShockedGuy 25 wait
-130 wait
-5 ShockedGuy 25 wait
-130 wait
-5 ShockedGuy 25 wait
-130 wait
-3 Snail 30 wait
+500
+5 krogdor 0 wait

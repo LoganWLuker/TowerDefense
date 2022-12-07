@@ -1,4 +1,2 @@
-1050
-1 ShockedGuy 0 wait
-200 wait
-5 ShockedGuy 25 wait
+500
+5 shockedguy 10 wait

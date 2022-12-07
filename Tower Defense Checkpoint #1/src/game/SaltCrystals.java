@@ -23,7 +23,7 @@ public class SaltCrystals extends GameObject
 		yPos = source.getPosition().y;
 		xSlope = target.getPosition().x - xPos;
 		ySlope = target.getPosition().y - yPos;
-		velocity = 20;
+		velocity = 10;
 	}
 	@Override
 	public void update(double elapsedTime) 

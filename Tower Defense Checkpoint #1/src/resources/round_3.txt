@@ -1,8 +1,8 @@
-800
-7 ShockedGuy 23 wait
-120 wait
-3 Snail 30 wait
-90 wait
-3 Snail 30 wait
-120 wait
-7 ShockedGuy 23 wait
+44
+7 ShockedGuy 0 wait
+50 wait
+3 Snail 0 wait
+50 wait
+3 Snail 0 wait
+50 wait
+7 ShockedGuy 0 wait

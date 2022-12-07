@@ -1,16 +1,2 @@
-10000
-7 ShockedGuy 15 wait
-120 wait
-4 Snail 25 wait
-80 wait
-4 Snail 25 wait
-3 ShockedGuy 10 wait
-1 Krogdor 10 wait
-50 wait
-3 ShockedGuy 10 wait
-100 wait
-1 Krogdor 10 wait
-50 wait
-5 ShockedGuy 10 wait
-200 wait
-3 Krogdor 30 wait
+2000
+500 krogdor 0 wait

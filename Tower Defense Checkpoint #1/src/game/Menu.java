@@ -80,6 +80,6 @@ public class Menu extends GameObject
 		
 		//Draw round
 		g.setColor(Color.BLACK);
-		g.drawString("Round: " + state.getRound(), 525 - Math.max(this.extraCashWidth, this.extraLivesWidth), 51);
+		g.drawString("Round: " + (int)state.getRound(), 525 - Math.max(this.extraCashWidth, this.extraLivesWidth), 51);
 	}
 }

@@ -28,7 +28,7 @@ public class ShockedGuy extends Enemy
     	percentage = 0;
         isVisible = true;
         isExpired = false;
-        reward = 50;
+        reward = 10;
         
         this.state = state;
         this.control = control;

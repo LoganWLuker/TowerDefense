@@ -18,7 +18,7 @@ public class State
 	
 	boolean gameOver = false;
 	int lives, cash;
-	int currentRound;
+	double currentRound;
 	int currentFrame; //startFrame ++'s this, towers with fire rate 'n' fire every 'n' frames
 	double elapsedTime;
 	double totalTime;
@@ -112,11 +112,11 @@ public class State
 	{
 		return this.totalTime;
 	}
-	public int getRound()
+	public double getRound()
 	{
 		return this.currentRound;
 	}
-	public void setRound(int target)
+	public void setRound(double target)
 	{
 		this.currentRound = target;
 	}
@@ -137,6 +137,17 @@ public class State
 			}
 		}
 		return target;
+	}
+	public boolean enemiesAlive()
+	{
+		for(GameObject a : currentFrameGameObjects)
+		{
+			if(a instanceof Enemy)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	public int getCurrentFrame() { return this.currentFrame; }
 }
