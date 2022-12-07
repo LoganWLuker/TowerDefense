@@ -85,6 +85,7 @@ public class Control implements Runnable,
         state.addGameObject(new Background(this));  // Add one background object to our list
         state.addGameObject(new Menu(this, state));	//Add menu object to list
         state.addGameObject(new SaltButton(this, state)); // Add Salt Button to list
+        state.addGameObject(new TeslaButton(this, state));
         //state.addGameObject(new Krogdor(this.state,this));  // Add one snail to our list
         //state.addGameObject(new Snail(this.state,this));  // Add one snail to our list
         
