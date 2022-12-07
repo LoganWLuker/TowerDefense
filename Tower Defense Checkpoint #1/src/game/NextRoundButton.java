@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -40,6 +41,9 @@ public class NextRoundButton extends GameObject implements Clickable
 			g.drawImage(control.getImage("NextRound.png"), 649, 475, null);
 		else
 			g.drawImage(control.getImage("RoundInProgress.png"), 649, 475, null);
+		g.setFont(new Font("Proxima Nova", 0, 13));
+		g.setColor(Color.black);
+		g.drawString("Start Next Round", 652, 590);
 	}
 	/**
 	 * Consume Click
