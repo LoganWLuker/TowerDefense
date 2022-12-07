@@ -23,15 +23,16 @@ public class Snail extends Enemy
 	 */
     public Snail (Control control, State state) 
     {
-    	super();
-    	velocity = 0.05; //0.05
-    	damage = 1;
+    	damage = 3;
     	percentage = 0;
         isVisible = true;
         isExpired = false;
+        reward = 30;
         
         this.state = state;
         this.control = control;
+        
+        velocity = 0.08 + .04 * (state.getRound()-1);
     }
     /**
      * Update the snail by moving it a small percentage along the path

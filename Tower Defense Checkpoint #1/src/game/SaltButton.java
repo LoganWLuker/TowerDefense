@@ -6,9 +6,10 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
-public class MenuButton extends GameObject implements Clickable
+public class SaltButton extends GameObject implements Clickable
 {
 	Control control;
 	State state;
@@ -17,7 +18,7 @@ public class MenuButton extends GameObject implements Clickable
 	 * @param control
 	 * @param state
 	 */
-	public MenuButton (Control control, State state)
+	public SaltButton (Control control, State state)
 	{
 		this.control = control;
 		this.state = state;
@@ -31,7 +32,6 @@ public class MenuButton extends GameObject implements Clickable
 	@Override
 	public void update(double elapsedTime) 
 	{
-		// TODO Auto-generated method stub
 		
 	}
 	/**
@@ -44,6 +44,9 @@ public class MenuButton extends GameObject implements Clickable
 		g.setColor(Color.GRAY);
 		g.fillRoundRect(630, 80, 140, 140, 0, 0);
 		g.drawImage(control.getImage("salt.png"), 674, 120, null);
+		g.setFont(new Font("Proxima Nova", 0, 13));
+		g.setColor(Color.black);
+		g.drawString("300 cash", 674, 200);
 	}
 	/**
 	 * Consume Click
@@ -55,19 +58,15 @@ public class MenuButton extends GameObject implements Clickable
 	@Override
 	public boolean consumeClick(int mouseX, int mouseY) 
 	{
+		Salt thisSalt = new Salt(this.control,this.state);
 		if(mouseX > 630 && mouseX < 770
-		   && mouseY > 80 && mouseY < 220)
+		   && mouseY > 80 && mouseY < 220 && state.getCash() >= thisSalt.getCost() && !state.gameOver)
 		{
-//			if((state.getRound()/0.5) % 2 != 0)
-//			{
-//				state.setRound(state.getRound()+0.5);
-//				control.roundControl.startRound(state.getRound());
-//			}
-			//SoundClipTest.LEVEL1.getFrameValue();
 			state.startFrame();
-			state.addGameObject(new Salt(this.state,this.control));
+			state.addGameObject(thisSalt);
 			state.finishFrame();
 			control.view.repaint();
+			state.setCash(state.getCash() - thisSalt.getCost());
 			return true;
 		}
 		return false;

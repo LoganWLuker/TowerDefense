@@ -1,0 +1,7 @@
+500
+50 krogdor 0 wait
+30 wait
+50 Snail 0 wait
+30 wait
+50 shockedguy 0 wait
+30 wait

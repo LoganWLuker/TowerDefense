@@ -1,0 +1,17 @@
+500
+7 ShockedGuy 0 wait
+30 wait
+10 ShockedGuy 0 wait
+30 wait
+10 Snail 0 wait
+30 wait
+10 ShockedGuy 0 wait
+30 wait
+5 Snail 5 wait 
+10 wait
+5 Snail 5 wait 
+10 wait
+5 Snail 5 wait 
+10 wait
+5 Snail 5 wait 
+10 wait

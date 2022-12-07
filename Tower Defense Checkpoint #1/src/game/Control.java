@@ -43,7 +43,7 @@ public class Control implements Runnable,
 	
 	private int mouseX, mouseY;
 	
-	private Path path;
+	Path path;
 	/**
 	 * default constructor,
 	 * run the run() method
@@ -72,9 +72,9 @@ public class Control implements Runnable,
 		pathScanner.close();
 		//set state
 		state = new State ();
-		state.setCash(5000);
+		state.setCash(1000);
 		state.setLives(100);
-		state.setRound(1); //0.5
+		state.setRound(0.5); //0.5
 		//load the view
 		view = new View (this, state);
 		
@@ -84,7 +84,9 @@ public class Control implements Runnable,
 		state.startFrame();  // Prepares the creation of the 'next' frame
         state.addGameObject(new Background(this));  // Add one background object to our list
         state.addGameObject(new Menu(this, state));	//Add menu object to list
-        state.addGameObject(new MenuButton(this, state)); // Add Salt Button to list
+        state.addGameObject(new SaltButton(this, state)); // Add Salt Button to list
+        state.addGameObject(new TeslaButton(this, state));
+        state.addGameObject(new NextRoundButton(this, state));
         //state.addGameObject(new Krogdor(this.state,this));  // Add one snail to our list
         //state.addGameObject(new Snail(this.state,this));  // Add one snail to our list
         
@@ -204,6 +206,7 @@ public class Control implements Runnable,
 		this.mouseY = e.getY();
 		
 		//System.out.println("X: " + mouseX + " | Y: " + mouseY);	
+		//System.out.println("Round " + state.getRound() + " is on frame #" + roundControl.getFrame() + ".");
 	}
 
 	@Override

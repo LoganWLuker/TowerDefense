@@ -1,5 +1,5 @@
 /**
- * Salt Class describes the salt Tower
+ * Tesla Class describes the tesla Tower
  * able to be placed
  *
  * @author  Logan Luker & Bruce Crockett
@@ -11,7 +11,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public class Salt extends Tower implements Clickable
+public class Tesla extends Tower implements Clickable
 {
 	boolean isMoving;
 	int towerRadius;
@@ -24,14 +24,14 @@ public class Salt extends Tower implements Clickable
 	 * @param state
 	 * @param control
 	 */
-	public Salt(Control control, State state)
+	public Tesla(State state, Control control)
 	{
-		this.cost = 300;
+		this.cost = 700;
 		xPos = control.getMouseX();
 		yPos = control.getMouseY();
 		towerRadius = 100;
 		fires = 0;
-		fireRate = 20; //not a true rate; smaller is faster, 1 is fastest
+		fireRate = 10; //not a true rate; smaller is faster, 1 is fastest
 		this.isVisible = true;
 		this.isExpired = false;
 		this.isMoving = true;
@@ -54,7 +54,7 @@ public class Salt extends Tower implements Clickable
 			Enemy nearestEnemy = state.findNearestFirstEnemy(new Point(xPos,yPos), towerRadius);
 			if(nearestEnemy != null && fires <= 0)
 			{
-				state.addGameObject(new SaltCrystals(control,state,this,nearestEnemy));
+				state.addGameObject(new TeslaZap(control,state,this,nearestEnemy));
 				fires = fireRate;
 				nearestEnemy.expire();
 				state.setCash(state.getCash() + nearestEnemy.getReward());
@@ -66,17 +66,16 @@ public class Salt extends Tower implements Clickable
 	 * Describe how to draw Salt tower
 	 */
 	@Override
-	public void draw(Graphics g) 
+	public void draw(Graphics g)
 	{
 		if(isMoving)
 		{
 			g.setColor(new Color(0,0,0,100));
-			//if we're over the path
 			if(control.path.isOver(this.xPos, this.yPos))
 				g.setColor(new Color(255,0,0,100));
 			g.fillOval(xPos - towerRadius, yPos - towerRadius, 2*towerRadius,2*towerRadius);
 		}
-		g.drawImage(control.getImage("salt.png"), xPos-26, yPos-30, null);
+		g.drawImage(control.getImage("tesla.png"), xPos-50, yPos-50, null);
 	}
 	/**
 	 * Describe how clicking is handled with Salt tower
@@ -84,7 +83,7 @@ public class Salt extends Tower implements Clickable
 	 * @param mouseY
 	 */
 	@Override
-	public boolean consumeClick(int mouseX, int mouseY) 
+	public boolean consumeClick(int mouseX, int mouseY)
 	{
 		if(isMoving && !control.path.isOver(mouseX, mouseY))
 		{
@@ -92,7 +91,7 @@ public class Salt extends Tower implements Clickable
 			if(mouseX < 0 || mouseX > 600 || mouseY < 0 || mouseY > 600)
 			{
 				this.isExpired = true;
-				state.setCash(state.getCash() + this.cost);
+				state.setCash(state.getCash() + this.getCost());
 			}
 			return true;
 		}

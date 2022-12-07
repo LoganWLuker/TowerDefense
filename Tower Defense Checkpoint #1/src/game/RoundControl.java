@@ -8,6 +8,7 @@ package game;
 
 import java.io.InputStream;
 import java.util.Scanner;
+//TODO: space between rounds is too long
 
 public class RoundControl 
 {
@@ -38,8 +39,10 @@ public class RoundControl
 	 */
 	public void startRound(double roundNum)
 	{
-//		if((state.getRound()/0.5) % 2 != 0)
-//			return;
+		frame = 0;
+		counter = 0;
+		if((state.getRound()/0.5) % 2 != 0)
+			return;
 		ClassLoader myLoader = this.getClass().getClassLoader();
 		InputStream roundStream = myLoader.getResourceAsStream("resources/round_" + (int)roundNum + ".txt");
 		Scanner roundScanner = new Scanner(roundStream);
@@ -129,7 +132,10 @@ public class RoundControl
 			}
 		}
 		//Uncomment to print out the round length
-		System.out.println(i);
+		//Extra space is always round 'length' in time PLUS: s = 250, 
+		//which is our parameter for time between rounds in-game
+		quantities[i] = -1;
+		System.out.println("Round: " + roundNum + " | minArrayLength: " + i);
 		roundScanner.close();
 	}
 	/**
@@ -138,14 +144,14 @@ public class RoundControl
 	 */
 	public void doNextFrame()
 	{
-//		if((state.getRound()/0.5) % 2 != 0)
-//			return;
+		if((state.getRound()/0.5) % 2 != 0) //round is in-between
+			return;
 		//if we're past the instructions, stop reading them
-		if(frame+1 > enemies.length)
+		if(frame+1 > enemies.length || quantities[frame] == -1)
 		{
+			state.setRound(state.getRound() + 0.5);
+			startRound(state.getRound());
 			frame ++;
-//			state.setRound(state.getRound()+0.5);
-//			startRound(state.getRound());
 			return;
 		}
 		//code for waiting
@@ -166,4 +172,6 @@ public class RoundControl
 			frame ++;
 		}
 	}
+	
+	public int getFrame() { return this.frame; }
 }

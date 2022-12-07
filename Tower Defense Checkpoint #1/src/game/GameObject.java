@@ -17,6 +17,8 @@ abstract public class GameObject
     //Abstract methods
     public boolean isVisible() { return isVisible; }
     public boolean isExpired() { return isExpired; }
+    
+    public void expire() { this.isExpired = true; }
 
     abstract public void update (double elapsedTime);
     abstract public void draw (Graphics g);

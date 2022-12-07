@@ -152,6 +152,18 @@ public class Path
 		 //return the point
 		 return new Point(x,y);
 	 }
+	 public boolean isOver(int xPos, int yPos)
+	 {
+		 Point position = new Point(xPos,yPos);
+		 Point testPos;
+		 for(double i = 0; i < 1; i += 0.01)
+		 {
+			 testPos = convertToCoordinates(i);
+			 if(position.distance(testPos) < 30)
+				 return true;
+		 }
+		 return false;
+	 }
 	/**
 	 * override toString with a string formatted like the file
 	 * 

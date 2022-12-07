@@ -1,2 +1,2 @@
-2
-1 krogdor 0 wait
+500
+5 shockedguy 10 wait

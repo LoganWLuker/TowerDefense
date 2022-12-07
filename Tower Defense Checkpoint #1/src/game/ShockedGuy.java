@@ -24,15 +24,15 @@ public class ShockedGuy extends Enemy
 	 */
     public ShockedGuy (Control control, State state)
     {
-    	super();
-    	velocity = 0.2; //0.05
-    	damage = 2;
+    	damage = 1;
     	percentage = 0;
         isVisible = true;
         isExpired = false;
+        reward = 10;
         
         this.state = state;
         this.control = control;
+    	velocity = 0.05 + .02 * state.getRound(); //0.05
     }
     /**
      * Update the snail by moving it a small percentage along the path

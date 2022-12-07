@@ -2,7 +2,7 @@ package game;
 
 import java.awt.Graphics;
 
-public class SaltCrystals extends GameObject 
+public class TeslaZap extends GameObject 
 {
 	int xPos,yPos;
 	double xSlope,ySlope;
@@ -11,7 +11,7 @@ public class SaltCrystals extends GameObject
 	State state;
 	GameObject source;
 	Enemy target;
-	public SaltCrystals (Control control, State state, Tower source, Enemy target)
+	public TeslaZap (Control control, State state, Tower source, Enemy target)
 	{
 		this.isVisible = true;
 		this.isExpired = false;
@@ -23,7 +23,7 @@ public class SaltCrystals extends GameObject
 		yPos = source.getPosition().y;
 		xSlope = target.getPosition().x - xPos;
 		ySlope = target.getPosition().y - yPos;
-		velocity = 10;
+		velocity = 30;
 	}
 	@Override
 	public void update(double elapsedTime) 
@@ -35,7 +35,7 @@ public class SaltCrystals extends GameObject
 	@Override
 	public void draw(Graphics g) 
 	{
-		g.drawImage(control.getImage("salt_crystals.png"), xPos-29, yPos-29, null);
+		g.drawImage(control.getImage("lightning.png"), xPos-100, yPos-180, null);
 	}
 
 }
