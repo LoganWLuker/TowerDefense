@@ -21,7 +21,6 @@ public class MenuButton extends GameObject implements Clickable
 	{
 		this.control = control;
 		this.state = state;
-		
 		isVisible = true;
 		isExpired = false;
 	}
@@ -59,6 +58,11 @@ public class MenuButton extends GameObject implements Clickable
 		if(mouseX > 630 && mouseX < 770
 		   && mouseY > 80 && mouseY < 220)
 		{
+//			if((state.getRound()/0.5) % 2 != 0)
+//			{
+//				state.setRound(state.getRound()+0.5);
+//				control.roundControl.startRound(state.getRound());
+//			}
 			//SoundClipTest.LEVEL1.getFrameValue();
 			state.startFrame();
 			state.addGameObject(new Salt(this.state,this.control));

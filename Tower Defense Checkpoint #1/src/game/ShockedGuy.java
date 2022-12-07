@@ -10,7 +10,7 @@ package game;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public class ShockedGuy extends GameObject
+public class ShockedGuy extends Enemy
 {
 	private double percentage;
 	private int damage;
@@ -24,6 +24,7 @@ public class ShockedGuy extends GameObject
 	 */
     public ShockedGuy (Control control, State state)
     {
+    	super();
     	velocity = 0.2; //0.05
     	damage = 2;
     	percentage = 0;
@@ -61,5 +62,20 @@ public class ShockedGuy extends GameObject
 	{
 		Point loc = control.getPath().convertToCoordinates(percentage);
         g.drawImage(control.getImage("shockedGuySmall.png"), loc.x-56, loc.y-50, null);
+	}
+	@Override
+	public Point getPosition()
+	{
+		Point loc = control.getPath().convertToCoordinates(percentage);
+		return loc;
+	}
+	@Override
+	public double getPercentage() 
+	{
+		return this.percentage;
+	}
+	public double getVelocity()
+	{
+		return this.velocity;
 	}
 }

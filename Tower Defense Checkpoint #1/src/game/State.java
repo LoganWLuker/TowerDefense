@@ -7,6 +7,7 @@
  */
 package game;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class State
 	
 	boolean gameOver = false;
 	int lives, cash;
-	int currentRound;
+	double currentRound;
 	double elapsedTime;
 	double totalTime;
 	private double lastTime;
@@ -108,12 +109,30 @@ public class State
 	{
 		return this.totalTime;
 	}
-	public int getRound()
+	public double getRound()
 	{
 		return this.currentRound;
 	}
-	public void setRound(int target)
+	public void setRound(double target)
 	{
 		this.currentRound = target;
+	}
+	public Enemy findNearestFirstEnemy(Point position, int towerRadius)
+	{
+		Enemy target = null;
+		double highestPercent = 0;
+		for(GameObject a : nextFrameGameObjects)
+		{
+			if(a instanceof Enemy)
+			{
+				Enemy e = (Enemy) a;
+				if(e.getPosition().distance(position) <= towerRadius && e.getPercentage() > highestPercent)
+				{
+					target = e;
+					highestPercent = e.getPercentage();
+				}
+			}
+		}
+		return target;
 	}
 }

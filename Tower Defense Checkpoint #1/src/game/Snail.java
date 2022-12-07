@@ -9,7 +9,7 @@ import java.awt.Point;
  * @author  Logan Luker & Bruce Crockett
  * @version 11/15/2022
  */
-public class Snail extends GameObject
+public class Snail extends Enemy
 {
 	private double percentage;
 	private int damage;
@@ -23,6 +23,7 @@ public class Snail extends GameObject
 	 */
     public Snail (Control control, State state) 
     {
+    	super();
     	velocity = 0.05; //0.05
     	damage = 1;
     	percentage = 0;
@@ -60,5 +61,21 @@ public class Snail extends GameObject
 	{
 		Point loc = control.getPath().convertToCoordinates(percentage);
         g.drawImage(control.getImage("snail.png"), loc.x-20, loc.y-20, null);
+	}
+	@Override
+	public Point getPosition() 
+	{
+		Point loc = control.getPath().convertToCoordinates(percentage);
+		return loc;
+	}
+	@Override
+	public double getPercentage() 
+	{
+		return this.percentage;
+	}
+	@Override
+	public double getVelocity()
+	{
+		return this.velocity;
 	}
 }
